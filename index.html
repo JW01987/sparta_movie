@@ -122,7 +122,8 @@
         };
 
         fetch(
-          "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1"
+          "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+          options
         )
           .then((response) => response.json())
           .then((res) => {
@@ -156,8 +157,18 @@
       input.addEventListener("change", (e) => {
         let search = e.target.value;
         if (search == "" || search == " ") location.reload();
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OTA1ZTlkMmE3Y2ZkZmViNzM1MDEzYjZlNmQ3NzhiMyIsInN1YiI6IjY0NzU3NGU5YmJjYWUwMDExOGJmNmQ3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NX73Ve8n9Sej2np-7mP-addEhM0R1Uo3k9hsfgl8PX8",
+          },
+        };
+
         fetch(
-          `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`
+          `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
+          options
         )
           .then((response) => response.json())
           .then((res) => {
