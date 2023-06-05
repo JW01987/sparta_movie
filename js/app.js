@@ -1,3 +1,4 @@
+import { saveDatas } from './sortFunc.js'
 import { movieTitleCheck } from "./validationCheck.js";
 const box = document.querySelector("#cards-box"); //card-box 아이디를 찾아서 box에 저장
 const input = document.querySelector(".search"); //사용자의 검색어를 받는 곳
@@ -20,6 +21,7 @@ function handleMovieCardClick(event) {
 }
 
 function printCard(data) {
+  saveDatas(data);
   box.innerHTML = "";
   data.forEach((a) => {
     let title = a.title;

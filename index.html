@@ -16,7 +16,8 @@
       integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c="
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/dropdown.css">
   </head>
 
   <body>
@@ -24,7 +25,17 @@
       <h1>최고의 영화들!</h1>
       <input placeholder="영화 검색하기" class="search" />
     </div>
+    <div class="dropdown">
+      <div class="box">
+        <button class="dropdown-btn">영화 정렬</button>
+        <div class="dropdown-submenu">
+          <a class="sort-btn" id="sort-name" href="#none">이름순</a>
+          <a class="sort-btn" id="sort-highgrade" href="#none">높은 평점순</a>
+          <a class="sort-btn" id="sort-rowgrade" href="#none">낮은 평점순</a>
+        </div>
+      </div>
+    </div>
     <div class="row" id="cards-box"></div>
-    <script src="/js/app.js" type="module"></script>
+    <script src="./js/app.js" type="module"></script>
   </body>
 </html>
