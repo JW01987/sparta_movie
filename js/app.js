@@ -63,6 +63,27 @@ input.addEventListener("change", (e) => {
     .catch((err) => console.error(err));
 });
 
+//엔터키 입력시 검색
+//그전에있던 함수를 사용해본 결과,
+//아무값도 없을때 enter키 입력시 적용이 안됨,공백이 있어야 작동이 됐었음. 
+//그래서 change를 keyup으로 변경 일단 혹시몰라서 주석처리함
+//테스트시 위 함수를 주석처리 후 아래 함수를 사용해보세요.
+// input.addEventListener("keyup", function (event) {
+//   if (event.key === 'Enter') { //눌린 키가 enter키일경우
+//     let check = 0;
+//     check = movieTitleCheck(input.value); //movieTitleCheck함수에서 틀리면 0, 성공하면 1의 값을 return 함
+//     if(check == 1){ //성공할 경우 해당 영화를 출력
+//       fetch(
+//         `https://api.themoviedb.org/3/search/movie?query=${input.value}&include_adult=false&language=ko-KR&page=1`, //백틱을 사용해서 안에 검색어를 넣어준다
+//         options
+//       )
+//         .then((response) => response.json())
+//         .then((res) => printCard(res.results))
+//         .catch((err) => console.error(err));
+//     }else location.reload(); //실패할 경우 movieTitleCheck함수에서 alert창으로 경고한 뒤 첫화면 reload
+//   }
+// });
+
 function goToMovieDetail(movieId) {
   // 선택한 영화의 이름을 상세 페이지로 전달하고, 상세 페이지로 이동한다.
   window.location.href = `/detail.html?id=${movieId}`;
