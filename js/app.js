@@ -21,7 +21,7 @@ const printCard = (data) => {
     let vote_average = a.vote_average;
     let id = a.id;
 
-    let temp_html = `<div class="col" onClick=alert("id:${id}")>
+    let temp_html = `<div class="col" onclick="goToMovieDetail('${id}')">
                       <div class="card">
                             <img src="https://image.tmdb.org/t/p/w500/${poster_path}"
                                 class="card-img-top">
@@ -62,3 +62,8 @@ input.addEventListener("change", (e) => {
     .then((res) => printCard(res.results))
     .catch((err) => console.error(err));
 });
+
+function goToMovieDetail(movieId) {
+  // 선택한 영화의 이름을 상세 페이지로 전달하고, 상세 페이지로 이동한다.
+  window.location.href = `/detail.html?id=${movieId}`;
+}

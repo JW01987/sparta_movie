@@ -64,3 +64,32 @@
   width: 500px;
   object-fit: cover;
 }
+.detail-card {
+  box-shadow: 1px 1px 5px gray;
+  border-radius: 3px;
+  margin: 20px auto 20px auto;
+  width: 80%;
+  display: flex;
+}
+.detail-card-body {
+  margin-left: 10px;
+}
+.detail-title {
+  font-size: 30px;
+  font-weight: 600;
+}
+.main {
+  margin: 0 10% 5% 10%;
+}
+.comments-box {
+  margin: 40px auto 20px auto;
+  text-align: center;
+}
+
+.comment {
+  box-shadow: 1px 1px 5px gray;
+  width: 60%;
+  margin: auto;
+  padding: 10px;
+  border-radius: 3px;
+}
