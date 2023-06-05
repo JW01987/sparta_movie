@@ -1,3 +1,4 @@
+import { movieTitleCheck } from "./validationCheck.js";
 const box = document.querySelector("#cards-box"); //card-box 아이디를 찾아서 box에 저장
 const input = document.querySelector(".search"); //사용자의 검색어를 받는 곳
 const options = {
@@ -48,41 +49,43 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((err) => console.error(err)); //위의 과정에서 에러가 나면 이쪽으로
 });
 
-input.addEventListener("change", (e) => {
-  //검색 받는 곳에서 change 이벤트가 일어나면(엔터) 발동하는 함수
-  let search = e.target.value; //e는 해당 이벤트가 일어나는 곳을 말함 //e.target.value는 해당 input태그에 들어온 값을 말한다 == 사용자가 검색한 것
-  if (search == "" || search == " ") location.reload(); //만약 사용자가 아무것도 없이 엔터를 누르면 창을 새로고침한다
-  let find = search.replace(" ", "%20"); //쿼리스트링으로 보내야하는데 띄어쓰기를 읽을 수 없어서 쿼리스트링에서 띄어쓰기인 %20을 띄어쓰기 대신 넣는다 //replace(바꾸고싶은 값,바뀔 값)
+// input.addEventListener("change", (e) => {
+//   //검색 받는 곳에서 change 이벤트가 일어나면(엔터) 발동하는 함수
+//   let search = e.target.value; //e는 해당 이벤트가 일어나는 곳을 말함 //e.target.value는 해당 input태그에 들어온 값을 말한다 == 사용자가 검색한 것
+//   if (search == "" || search == " ") location.reload(); //만약 사용자가 아무것도 없이 엔터를 누르면 창을 새로고침한다
+//   let find = search.replace(" ", "%20"); //쿼리스트링으로 보내야하는데 띄어쓰기를 읽을 수 없어서 쿼리스트링에서 띄어쓰기인 %20을 띄어쓰기 대신 넣는다 //replace(바꾸고싶은 값,바뀔 값)
 
-  fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${find}&include_adult=false&language=ko-KR&page=1`, //백틱을 사용해서 안에 검색어를 넣어준다
-    options
-  )
-    .then((response) => response.json())
-    .then((res) => printCard(res.results))
-    .catch((err) => console.error(err));
-});
+//   fetch(
+//     `https://api.themoviedb.org/3/search/movie?query=${find}&include_adult=false&language=ko-KR&page=1`, //백틱을 사용해서 안에 검색어를 넣어준다
+//     options
+//   )
+//     .then((response) => response.json())
+//     .then((res) => printCard(res.results))
+//     .catch((err) => console.error(err));
+// });
 
 //엔터키 입력시 검색
 //그전에있던 함수를 사용해본 결과,
-//아무값도 없을때 enter키 입력시 적용이 안됨,공백이 있어야 작동이 됐었음. 
+//아무값도 없을때 enter키 입력시 적용이 안됨,공백이 있어야 작동이 됐었음.
 //그래서 change를 keyup으로 변경 일단 혹시몰라서 주석처리함
 //테스트시 위 함수를 주석처리 후 아래 함수를 사용해보세요.
-// input.addEventListener("keyup", function (event) {
-//   if (event.key === 'Enter') { //눌린 키가 enter키일경우
-//     let check = 0;
-//     check = movieTitleCheck(input.value); //movieTitleCheck함수에서 틀리면 0, 성공하면 1의 값을 return 함
-//     if(check == 1){ //성공할 경우 해당 영화를 출력
-//       fetch(
-//         `https://api.themoviedb.org/3/search/movie?query=${input.value}&include_adult=false&language=ko-KR&page=1`, //백틱을 사용해서 안에 검색어를 넣어준다
-//         options
-//       )
-//         .then((response) => response.json())
-//         .then((res) => printCard(res.results))
-//         .catch((err) => console.error(err));
-//     }else location.reload(); //실패할 경우 movieTitleCheck함수에서 alert창으로 경고한 뒤 첫화면 reload
-//   }
-// });
+input.addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    //눌린 키가 enter키일경우
+    let check = 0;
+    check = movieTitleCheck(input.value); //movieTitleCheck함수에서 틀리면 0, 성공하면 1의 값을 return 함
+    if (check == 1) {
+      //성공할 경우 해당 영화를 출력
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${input.value}&include_adult=false&language=ko-KR&page=1`, //백틱을 사용해서 안에 검색어를 넣어준다
+        options
+      )
+        .then((response) => response.json())
+        .then((res) => printCard(res.results))
+        .catch((err) => console.error(err));
+    } else location.reload(); //실패할 경우 movieTitleCheck함수에서 alert창으로 경고한 뒤 첫화면 reload
+  }
+});
 
 function goToMovieDetail(movieId) {
   // 선택한 영화의 이름을 상세 페이지로 전달하고, 상세 페이지로 이동한다.
