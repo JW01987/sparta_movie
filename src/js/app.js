@@ -10,8 +10,10 @@ const options = {
   },
 };
 const printCard = (data) => {
+  console.log(data);
   box.innerHTML = ""; //위에서 저장해둔 box 비우기
   data.forEach((a) => {
+    console.log(a);
     //받은 데이터중 results의 요소를 하나하나 열어보기
     let title = a.title; //열어본 요소에서 title값 가져오기
     let overview = a.overview;
