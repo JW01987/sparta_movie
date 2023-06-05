@@ -95,4 +95,5 @@ export function ReviewText(reviewText) {
   }
 
   return check;
+  return check;
 }
