@@ -100,7 +100,6 @@ if (comments) {
   comments = JSON.parse(comments);
   comments.forEach((commentData) => {
     const { id, name, text, movie } = commentData;
-    console.log(commentData);
     if (movieId == movie) {
       const commentHTML = `
       <div class="comment" data-comment-id="${id}" >
@@ -115,28 +114,43 @@ if (comments) {
   });
 }
 
+//오픈판업함수 입니다. 길이와 넓이를 정하고 중앙에 뜨게끔 만들었습니다
+function openPopup() {
+  const width = 500;
+  const height = 600;
+  const left = window.innerWidth / 2 - width / 2;
+  const top = window.innerHeight / 2 - height / 2;
+  window.open("/popup.html", "PopupWin", `width=${width},height=${height},left=${left},top=${top}`);
+}
+
+//삭제부분에 이어서 붙였습니다. 클릭을 하면 먼저 해당 id를 찾은 뒤 
+//팝업창이 뜨게끔 만들었습니다.
+
+const commentBox = document.querySelector(".comment-box");
 document.addEventListener("DOMContentLoaded", () => {
-  //코멘트 삭제
-  const commentBox = document.querySelector(".comment-box");
   commentBox.addEventListener("click", (event) => {
     if (event.target.classList.contains("del-btn")) {
       const commentElement = event.target.closest(".comment");
       const commentId = commentElement.dataset.commentId;
-      const findId = JSON.parse(localStorage.getItem("comments")).filter(
-        (comment) => comment.id == commentId
-      );
-      console.log(findId);
-      commentElement.remove();
-      alert("리뷰를 삭제하겠습니다.");
+      const commentPassword = prompt("비밀번호를 입력하세요."); // 비밀번호 입력 받기
 
-      //로컬 저장소에서 삭제
-      const comments = JSON.parse(localStorage.getItem("comments")) || [];
-      const updatedComments = comments.filter(
-        (comment) => comment.id !== commentId
-      );
-      localStorage.setItem("comments", JSON.stringify(updatedComments));
+      // 비밀번호 확인
+      if (commentPassword !== null && ReviewPasswordCheck(commentPassword, commentId)) {
+        commentElement.remove();
+        openPopup();
+
+        // 로컬 저장소에서 삭제
+        const comments = JSON.parse(localStorage.getItem("comments")) || [];
+        const updatedComments = comments.filter((comment) => comment.id !== commentId);
+        localStorage.setItem("comments", JSON.stringify(updatedComments));
+      } else {
+        alert("비밀번호가 일치하지 않습니다.");
+      }
     }
+
   });
+});
+
 
   //코멘트 수정 - test
   commentBox.addEventListener("click", (event) => {
@@ -188,4 +202,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
-});
+
