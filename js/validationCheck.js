@@ -1,4 +1,3 @@
-
 let scriptTag = /[~!@#\$%\^&\*\(\)_\+\-={}\[\];:<>,\.\/\?\"\'\/\|\\]/; // 특수문자들
 let space = /\s/; //공백값
 
@@ -11,15 +10,15 @@ export function movieTitleCheck(find) {
     alert("제목을 입력해주세요");
   } else if (space.test(find) == true) {
     //공백이 있는 경우
-    alert("공백은 사용할 수 없습니다.");
+    alert("제목에 공백은 사용할 수 없습니다.");
   } else if (scriptTag.test(find) == true) {
     //특수문자가 포함된 경우
     alert("특수문자는 들어갈 수 없습니다.");
   } else if (find.length > 20) {
     // 20자 초과한 경우
-    alert("20자 이내로 작성해주세요");
+    alert("제목을 20자 이내로 작성해주세요");
   } else {
-     check = true;
+    check = true;
   }
   return check;
 }
@@ -33,7 +32,7 @@ export function ReviewIdCheck(reviewId) {
     alert("아이디를 입력해주세요");
   } else if (space.test(reviewId) == true) {
     //공백이 있는 경우
-    alert("공백은 사용할 수 없습니다.");
+    alert("아이디에는 공백은 사용할 수 없습니다.");
   } else if (scriptTag.test(reviewId) == true) {
     // 특수문자가 포함된 경우
     alert("아이디에는 특수문자를 사용할 수 없습니다.");
@@ -49,7 +48,6 @@ export function ReviewIdCheck(reviewId) {
   return check;
 }
 
-
 //리뷰 비밀번호 유효성 검사
 export function ReviewPasswordCheck(reviewPassword, reviewId) {
   let scriptTagKo = /[가-힣|ㄱ-ㅎ|ㅏ-ㅣ]/; //한글들
@@ -60,7 +58,7 @@ export function ReviewPasswordCheck(reviewPassword, reviewId) {
     alert("비밀번호를 입력해주세요.");
   } else if (space.test(reviewPassword) == true) {
     //공백이 있는 경우
-    alert("공백은 사용할 수 없습니다.");
+    alert("비밀번호에 공백은 사용할 수 없습니다.");
   } else if (reviewId == reviewPassword) {
     //아이디와 비밀번호가 같을 경우
     alert("비밀번호와 아이디는 같을 수 없습니다.");
@@ -78,7 +76,6 @@ export function ReviewPasswordCheck(reviewPassword, reviewId) {
   }
   return check;
 }
-
 
 //리뷰 텍스트 유효성 검사
 export function ReviewText(reviewText) {

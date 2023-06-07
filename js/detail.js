@@ -42,6 +42,7 @@ submit.addEventListener("click", () => {
       name: name.value,
       password: psw.value,
       text: comment.value,
+      movie: movieId,
     };
 
     // 저장된 댓글 가져오기
@@ -93,16 +94,18 @@ let comments = localStorage.getItem("comments");
 if (comments) {
   comments = JSON.parse(comments);
   comments.forEach((commentData) => {
-    const { id, name, text } = commentData;
-    const commentHTML = `
-      <div class="comment" data-comment-id="${id}">
+    const { id, name, text, movie } = commentData;
+    if (movieId == movie) {
+      const commentHTML = `
+      <div class="comment" data-comment-id="${id}" >
         <p class="comment-name">이름: ${name}</p>
         <p class="comment-text">리뷰: ${text}</p>
         <button class="edit-btn">수정</button>
         <button class="del-btn">삭제</button>
       </div>
     `;
-    commentbox.innerHTML += commentHTML;
+      commentbox.innerHTML += commentHTML;
+    }
   });
 }
 
