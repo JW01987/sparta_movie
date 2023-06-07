@@ -100,6 +100,7 @@ if (comments) {
   comments = JSON.parse(comments);
   comments.forEach((commentData) => {
     const { id, name, text, movie } = commentData;
+    console.log(commentData);
     if (movieId == movie) {
       const commentHTML = `
       <div class="comment" data-comment-id="${id}" >
@@ -121,6 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target.classList.contains("del-btn")) {
       const commentElement = event.target.closest(".comment");
       const commentId = commentElement.dataset.commentId;
+      const findId = JSON.parse(localStorage.getItem("comments")).filter(
+        (comment) => comment.id == commentId
+      );
+      console.log(findId);
       commentElement.remove();
       alert("리뷰를 삭제하겠습니다.");
 

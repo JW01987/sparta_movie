@@ -14,7 +14,6 @@ export function movieTitleCheck(find) {
       if (find[i] == " ") {
         count++;
       }
-      console.log(find[i]);
     }
   }
 

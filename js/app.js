@@ -20,6 +20,14 @@ function handleMovieCardClick(event) {
 function printCard(data) {
   saveDatas(data);
   box.innerHTML = "";
+  if (data.length === 0) {
+    let temp_html = `
+      <div class="title-none">
+        검색 결과가 없습니다
+      </div>
+    `;
+    box.innerHTML += temp_html;
+  }
   data.forEach((a) => {
     let title = a.title;
     let overview = a.overview;
@@ -32,7 +40,6 @@ function printCard(data) {
     cardElement.classList.add("movie-card");
     cardElement.dataset.movieId = id;
     cardElement.addEventListener("click", handleMovieCardClick);
-
     let temp_html = `
       <div class="card">
         <img src="https://image.tmdb.org/t/p/w500/${poster_path}" class="card-img-top">
