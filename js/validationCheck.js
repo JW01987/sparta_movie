@@ -1,4 +1,6 @@
 const $comment = document.querySelector("#comment");
+const urlParams = new URLSearchParams(window.location.search);
+const movieId = urlParams.get("id");
 
 let scriptTag = /[~!@#\$%\^&\*\(\)_\+\-={}\[\];:<>,\.\/\?\"\'\/\|\\]/; // 특수문자들
 let space = /\s/; //공백값
@@ -37,7 +39,11 @@ export function ReviewIdCheck(reviewId) {
 
     for (let i = 0; i < getLocalStorage.length; i++) {
       //getLocalStorage = [{name: name,...},{},...];
-      if (getLocalStorage[i].name == reviewId) {
+      //해당 영화에서만의 이름만 비교
+      if (
+        movieId == getLocalStorage[i].movie &&
+        getLocalStorage[i].name == reviewId
+      ) {
         check = 2;
         break;
       }
