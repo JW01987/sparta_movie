@@ -2,6 +2,7 @@ import {
   ReviewIdCheck,
   ReviewPasswordCheck,
   ReviewText,
+  ReviewUpdateNameCheck,
 } from "./validationCheck.js";
 
 const box = document.querySelector("#detail-box"); //card-box 아이디를 찾아서 box에 저장
@@ -12,6 +13,10 @@ const name = document.querySelector("#name");
 const psw = document.querySelector("#psw");
 const comment = document.querySelector("#comment");
 const movieId = urlParams.get("id");
+const modal2 = document.querySelector("#modal2");
+const name2 = document.querySelector("#name2");
+const psw2 = document.querySelector("#psw2");
+const comment2 = document.querySelector("#comment2");
 const options = {
   method: "GET",
   headers: {
@@ -125,6 +130,57 @@ document.addEventListener("DOMContentLoaded", () => {
         (comment) => comment.id !== commentId
       );
       localStorage.setItem("comments", JSON.stringify(updatedComments));
+    }
+  });
+
+  //코멘트 수정 - test
+  commentBox.addEventListener("click", (event) => {
+    //수정 버튼 클릭
+    if (event.target.classList.contains("edit-btn")) {
+      modal2.classList.add("show-modal");
+      document.querySelector("#close2").addEventListener("click", () => {
+        modal2.classList.remove("show-modal");
+      });
+
+      let updatePwd = "";
+      let index = 0;
+      const commentElement = event.target.closest(".comment");
+      const commentId = commentElement.dataset.commentId;
+      const comments = JSON.parse(localStorage.getItem("comments")) || [];
+      const updatedComments = comments.filter(
+        (comment) => comment.id === commentId
+      );
+      name2.value = updatedComments[0].name;
+      comment2.value = updatedComments[0].text;
+      updatePwd = updatedComments[0].password;
+
+      for (let i = 0; i < comments.length; i++) {
+        if (
+          movieId == comments[i].movie &&
+          comments[i].id == updatedComments[0].id
+        ) {
+          index = i;
+          break;
+        }
+      }
+
+      document.querySelector("#save").addEventListener("click", () => {
+        if (
+          ReviewUpdateNameCheck(name2.value, index) &&
+          ReviewPasswordCheck(psw2.value, name2.value) &&
+          ReviewText(comment2.value)
+        ) {
+          if (updatePwd == psw2.value) {
+            comments[index].name = name2.value;
+            comments[index].text = comment2.value;
+            localStorage.setItem("comments", JSON.stringify(comments));
+            alert("저장완료!");
+            window.location.reload();
+          } else {
+            alert("비밀번호가 다릅니다!");
+          }
+        }
+      });
     }
   });
 });

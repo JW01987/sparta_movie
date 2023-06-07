@@ -121,3 +121,52 @@ export function ReviewText(reviewText) {
 
   return check;
 }
+
+//리뷰 수정시 이름 검사
+export function ReviewUpdateNameCheck(updateName, index) {
+  let check = false;
+
+  //localStorage에서 같은 이름이 있나 확인
+  if (localStorage.length != 0) {
+    let key = localStorage.key(0);
+    //키에 해당하는 값을 get...에 넣어준다
+    let getLocalStorage = JSON.parse(localStorage.getItem(key));
+
+    for (let i = 0; i < getLocalStorage.length; i++) {
+      //입력받은 index는 해당 이름을 변경하지 않을 수 있어서 그 값을 제외
+      if (index != i) {
+        if (
+          movieId == getLocalStorage[i].movie &&
+          getLocalStorage[i].name == updateName
+        ) {
+          check = 2;
+          break;
+        }
+      }
+    }
+  }
+
+  if (updateName.length == 0) {
+    //값이 없는 경우
+    alert("이름을 입력해주세요");
+  } else if (check == 2) {
+    //localStorage에 값이 있는경우
+    alert(`${updateName}(이)라는 이름은 존재합니다.`);
+    check = false;
+  } else if (space.test(updateName) == true) {
+    //공백이 있는 경우
+    alert("공백은 사용할 수 없습니다.");
+  } else if (scriptTag.test(updateName) == true) {
+    // 특수문자가 포함된 경우
+    alert("이름에는 특수문자를 사용할 수 없습니다.");
+  } else if (updateName.length > 12) {
+    //이름 크기가 12자를 초과한 경우
+    alert("이름은 12자리 이하여야 합니다.");
+  } else if (updateName.length < 3) {
+    //이름 크기가 3자 미만인 경우
+    alert("이름은 3자리 이상이어야 합니다.");
+  } else {
+    check = true;
+  }
+  return check;
+}
