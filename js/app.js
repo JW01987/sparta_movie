@@ -1,4 +1,4 @@
-import { saveDatas } from './sortFunc.js'
+import { saveDatas } from "./sortFunc.js";
 import { movieTitleCheck } from "./validationCheck.js";
 const box = document.querySelector("#cards-box"); //card-box 아이디를 찾아서 box에 저장
 const input = document.querySelector(".search"); //사용자의 검색어를 받는 곳
@@ -11,13 +11,10 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OTA1ZTlkMmE3Y2ZkZmViNzM1MDEzYjZlNmQ3NzhiMyIsInN1YiI6IjY0NzU3NGU5YmJjYWUwMDExOGJmNmQ3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NX73Ve8n9Sej2np-7mP-addEhM0R1Uo3k9hsfgl8PX8",
   },
 };
-function goToMovieDetail(movieId) {
-  // 선택한 영화의 이름을 상세 페이지로 전달하고, 상세 페이지로 이동한다.
-  window.location.href = `/detail.html?id=${movieId}`;
-}
+
 function handleMovieCardClick(event) {
   const movieId = event.currentTarget.dataset.movieId;
-  goToMovieDetail(movieId);
+  window.location.href = `/detail.html?id=${movieId}`;
 }
 
 function printCard(data) {

@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((err) => console.error(err)); //위의 과정에서 에러가 나면 이쪽으로
 });
 const printCard = (data) => {
-  console.log(data);
   box.innerHTML = ""; //위에서 저장해둔 box 비우기
   let title = data.title;
   let overview = data.overview;
