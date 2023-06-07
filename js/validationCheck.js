@@ -17,6 +17,7 @@ export function movieTitleCheck(find) {
       console.log(find[i]);
     }
   }
+
   if (find.length == 0) {
     //값이 없는 경우
     alert("제목을 입력해주세요");
