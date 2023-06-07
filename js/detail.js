@@ -126,9 +126,8 @@ function openPopup() {
 //삭제부분에 이어서 붙였습니다. 클릭을 하면 먼저 해당 id를 찾은 뒤 
 //팝업창이 뜨게끔 만들었습니다.
 
-
+const commentBox = document.querySelector(".comment-box");
 document.addEventListener("DOMContentLoaded", () => {
-  const commentBox = document.querySelector(".comment-box");
   commentBox.addEventListener("click", (event) => {
     if (event.target.classList.contains("del-btn")) {
       const commentElement = event.target.closest(".comment");
@@ -146,9 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("comments", JSON.stringify(updatedComments));
       } else {
         alert("비밀번호가 일치하지 않습니다.");
-        window.location.reload();
       }
-    }//비밀번호가 일치하지 않으면 바로 리로드가 되게 했습니다
+    }
+
   });
 });
 

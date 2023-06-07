@@ -181,6 +181,18 @@ label {
 #close:hover {
   background-color: #b16238;
 }
+#save {
+  background-color: #53bf9d;
+}
+#save:hover {
+  background-color: #42967d;
+}
+#close2 {
+  background-color: #f9894c;
+}
+#close2:hover {
+  background-color: #b16238;
+}
 .modal-open {
   border: 1px solid black;
   background-color: #72a9f6;
@@ -260,4 +272,9 @@ label {
 .sort-btn {
   color: #222;
   text-decoration: none;
+}
+
+.title-none {
+  margin-top: 10%;
+  font-size: 30px;
 }

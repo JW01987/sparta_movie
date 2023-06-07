@@ -8,11 +8,19 @@ let space = /\s/; //공백값
 //영화 검색 유효성 검사
 export function movieTitleCheck(find) {
   let check = false;
+  let count = 0;
+  if (find.length != 0) {
+    for (let i = 0; i < find.length; i++) {
+      if (find[i] == " ") {
+        count++;
+      }
+    }
+  }
 
   if (find.length == 0) {
     //값이 없는 경우
     alert("제목을 입력해주세요");
-  } else if (space.test(find) == true) {
+  } else if (count == find.length) {
     //공백이 있는 경우
     alert("공백은 사용할 수 없습니다.");
   } else if (scriptTag.test(find) == true) {
