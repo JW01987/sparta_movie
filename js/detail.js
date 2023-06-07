@@ -12,7 +12,6 @@ const name = document.querySelector("#name");
 const psw = document.querySelector("#psw");
 const comment = document.querySelector("#comment");
 const movieId = urlParams.get("id");
-
 const options = {
   method: "GET",
   headers: {
@@ -21,6 +20,7 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OTA1ZTlkMmE3Y2ZkZmViNzM1MDEzYjZlNmQ3NzhiMyIsInN1YiI6IjY0NzU3NGU5YmJjYWUwMDExOGJmNmQ3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NX73Ve8n9Sej2np-7mP-addEhM0R1Uo3k9hsfgl8PX8",
   },
 };
+
 //모달 창 열기
 document.querySelector(".modal-open").addEventListener("click", () => {
   modal.classList.add("show-modal");
@@ -28,22 +28,6 @@ document.querySelector(".modal-open").addEventListener("click", () => {
 //모달 창 닫기
 document.querySelector("#close").addEventListener("click", () => {
   modal.classList.remove("show-modal");
-});
-//수정 창 열기
-document.querySelector(".edit-btn").addEventListener("click", (e) => {
-  modal.classList.add("show-modal");
-  //데이터 셋에 저장해둔 데이터 긁어오기
-  name.value = "test";
-  comment.value = "testtest";
-  submit.addEventListener("click", () => {
-    if (psw.value == "가져온값") {
-      //로컬에 저장
-      alert("굿");
-      window.location.reload();
-    } else {
-      alert("비밀번호가 틀렸습니다");
-    }
-  });
 });
 //댓글 등록
 submit.addEventListener("click", () => {
@@ -72,8 +56,6 @@ submit.addEventListener("click", () => {
   }
 });
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   //html의 컨텐츠들이 전부 로딩 된 후 실행
   fetch(
@@ -84,8 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => printCard(res))
     .catch((err) => console.error(err)); //위의 과정에서 에러가 나면 이쪽으로
 });
+
 const printCard = (data) => {
-  console.log(data);
   box.innerHTML = ""; //위에서 저장해둔 box 비우기
   let title = data.title;
   let overview = data.overview;
@@ -104,10 +86,8 @@ const printCard = (data) => {
 
   box.innerHTML += temp_html; //box에 temp_html을 넣기
 
-}
-
-
-//버튼을 누르면 해당 id값을 받아서 삭제를 할 수 있게끔 만듦
+  //로컬스토리지에서 값 가져오기
+};
 const commentbox = document.querySelector(".comment-box");
 let comments = localStorage.getItem("comments");
 if (comments) {
@@ -127,8 +107,7 @@ if (comments) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
-//코멘트 삭제
+  //코멘트 삭제
   const commentBox = document.querySelector(".comment-box");
   commentBox.addEventListener("click", (event) => {
     if (event.target.classList.contains("del-btn")) {
@@ -137,12 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
       commentElement.remove();
       alert("리뷰를 삭제하겠습니다.");
 
-     //로컬 저장소에서 삭제
+      //로컬 저장소에서 삭제
       const comments = JSON.parse(localStorage.getItem("comments")) || [];
-      const updatedComments = comments.filter((comment) => comment.id !== commentId);
+      const updatedComments = comments.filter(
+        (comment) => comment.id !== commentId
+      );
       localStorage.setItem("comments", JSON.stringify(updatedComments));
     }
   });
 });
-
-// ...
