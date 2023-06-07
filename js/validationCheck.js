@@ -1,9 +1,10 @@
+
 let scriptTag = /[~!@#\$%\^&\*\(\)_\+\-={}\[\];:<>,\.\/\?\"\'\/\|\\]/; // 특수문자들
 let space = /\s/; //공백값
 
 //영화 검색 유효성 검사
 export function movieTitleCheck(find) {
-  let check = 0;
+  let check = false;
 
   if (find.length == 0) {
     //값이 없는 경우
@@ -18,14 +19,14 @@ export function movieTitleCheck(find) {
     // 20자 초과한 경우
     alert("20자 이내로 작성해주세요");
   } else {
-    check = 1;
+     check = true;
   }
   return check;
 }
 
 //리뷰 이름 유효성 검사
 export function ReviewIdCheck(reviewId) {
-  let check = 0;
+  let check = false;
 
   if (reviewId.length == 0) {
     //값이 없는 경우
@@ -43,15 +44,16 @@ export function ReviewIdCheck(reviewId) {
     //이름 크기가 3자 미만인 경우
     alert("아이디는 3자리 이상이어야 합니다.");
   } else {
-    check = 1;
+    check = true;
   }
   return check;
 }
 
+
 //리뷰 비밀번호 유효성 검사
 export function ReviewPasswordCheck(reviewPassword, reviewId) {
   let scriptTagKo = /[가-힣|ㄱ-ㅎ|ㅏ-ㅣ]/; //한글들
-  let check = 0;
+  let check = false;
 
   if (reviewPassword.length == 0) {
     //값이 없는 경우
@@ -72,14 +74,15 @@ export function ReviewPasswordCheck(reviewPassword, reviewId) {
     // 비밀번호가 20자 초과한 경우
     alert("비밀번호는 20자리 이하여야 합니다.");
   } else {
-    check = 1;
+    check = true;
   }
   return check;
 }
 
+
 //리뷰 텍스트 유효성 검사
 export function ReviewText(reviewText) {
-  let check = 0;
+  let check = false;
 
   if (reviewText.length == 0) {
     //글이 하나도 없는경우
@@ -91,9 +94,8 @@ export function ReviewText(reviewText) {
     //글이 3자 미만인 경우
     alert("리뷰는 3자리 이상이어야 합니다.");
   } else {
-    check = 1;
+    check = true;
   }
 
-  return check;
   return check;
 }
