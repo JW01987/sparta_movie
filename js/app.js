@@ -14,7 +14,7 @@ const options = {
 
 function handleMovieCardClick(event) {
   const movieId = event.currentTarget.dataset.movieId;
-  window.location.href = `/detail.html?id=${movieId}`;
+  window.location.href = `/sparta_movie/detail.html?id=${movieId}`;
 }
 
 function printCard(data) {
