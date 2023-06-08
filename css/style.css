@@ -1,6 +1,12 @@
 * {
   font-family: "Gowun Dodum", sans-serif;
 }
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
 a {
   font-size: 25px;
   color: white;
@@ -119,8 +125,8 @@ a {
   background-color: #b16238;
 }
 .modal {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;
