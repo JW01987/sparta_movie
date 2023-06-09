@@ -14,7 +14,8 @@ const options = {
 
 function handleMovieCardClick(event) {
   const movieId = event.currentTarget.dataset.movieId;
-  window.location.href = `../detail.html?id=${movieId}`;
+  window.location.href = `/sparta_movie/detail.html?id=${movieId}`;
+  //로컬에서는 window.location.href = `./detail.html?id=${movieId}`; 로 바꿔주세요
 }
 
 function printCard(data) {
