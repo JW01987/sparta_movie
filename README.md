@@ -3,7 +3,7 @@
 https://jw01987.github.io/sparta_movie/
 
 로컬에서 페이지를 열고 싶다면
-app.js 18번째 줄, sortFunc의 80번째 주석을 참고하시기 바랍니다.
+app.js 18번째 줄, sortFunc.js의 80번째 주석을 참고하시기 바랍니다.
 
 # 필수구현
 
