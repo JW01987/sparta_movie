@@ -76,7 +76,8 @@ const highCompare = (a, b) => {
 
 function handleMovieCardClick(event) {
   const movieId = event.currentTarget.dataset.movieId;
-  window.location.href = `/detail.html?id=${movieId}`;
+  window.location.href = `/sparta_movie/detail.html?id=${movieId}`;
+  //로컬에서는 window.location.href = `./detail.html?id=${movieId}`; 로 바꿔주세요
 }
 // 정렬을 한 데이터를 다시 카드로 출력한다.
 const printCard = (data) => {
